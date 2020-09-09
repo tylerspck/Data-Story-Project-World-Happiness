@@ -4,12 +4,12 @@ CREATE TABLE HAPPINESS (
     HAPPINESS_RANK int NOT NULL,
     YEAR int NOT NULL,
     HAPPINESS_SCORE float NOT NULL,
-    ECONOMY float NOT NULL,
-    FAMILY float NOT NULL,
-    HEALTH float NOT NULL,
-    FREEDOM float NOT NULL,
-    TRUST float NOT NULL,
-    GENEROSITY float NOT NULL,
+    ECONOMY float,
+    FAMILY float,
+    HEALTH float,
+    FREEDOM float,
+    TRUST float,
+    GENEROSITY float,
     PRIMARY KEY (INDEX)
     );
 
