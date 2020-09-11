@@ -24,3 +24,15 @@ CREATE TABLE COUNTRYCODES (
     ALPHA3 varchar(3),
     PRIMARY KEY (INDEX)
 );
+
+CREATE TABLE WBCOUNTRIES (
+    INDEX int NOT NULL,
+    COUNTRY varchar(50) NOT NULL,
+    CAPITALCITY varchar(50),
+    CAPITALLAT float,
+    CAPITALLONG float,
+    REGION varchar(50),
+    INCOMELEVEL varchar(50),
+    WBCOUNTRYCODE varchar(2),
+    ALPHA2 varchar(2)
+);
