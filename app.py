@@ -38,40 +38,40 @@ def homepage():
         f"/api/v1.0/2020<br/>"
     )
 
-# @app.route("/api/v1.0/All")
-# def happinessAll():
+@app.route("/api/v1.0/All")
+def happinessAll():
 
-#      resultall = con.execute("""with result as (
-#         select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
-#         select * from result""")
+    resultall = con.execute("""with result as (
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select * from result""")
 
-#     results = []
+    results = []
 
-#     for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in resultall:
-#                 newjson = {}
-#                 newjson["country"] = country
-#                 newjson["region"] = region
-#                 newjson["country code"] = countrycode
-#                 newjson["capital city"] = capitalcity
-#                 newjson["country"] = country
-#                 newjson["latitude"] = capitallat
-#                 newjson["longitude"] = capitallong
-#                 newjson["happiness Rank"] = happiness_rank
-#                 newjson["Year"] = year
-#                 newjson["happiness_score"] = happiness_score
-#                 newjson["economy"] = economy
-#                 newjson["family"] = family
-#                 newjson["health"] = health
-#                 newjson["freedom"] = freedom
-#                 newjson["trust"] = trust
-#                 newjson["generosity"] = generosity
-#                 newjson["population"] = population
-#                 newjson["area"] = area
-#                 newjson["gdp"] = gdp
-#                 newjson["income level"] = incomelevel
-#                 results.append(newjson)
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in resultall:
+                newjson = {}
+                newjson["country"] = country
+                newjson["region"] = region
+                newjson["country code"] = countrycode
+                newjson["capital city"] = capitalcity
+                newjson["country"] = country
+                newjson["latitude"] = capitallat
+                newjson["longitude"] = capitallong
+                newjson["happiness Rank"] = happiness_rank
+                newjson["Year"] = year
+                newjson["happiness_score"] = happiness_score
+                newjson["economy"] = economy
+                newjson["family"] = family
+                newjson["health"] = health
+                newjson["freedom"] = freedom
+                newjson["trust"] = trust
+                newjson["generosity"] = generosity
+                newjson["population"] = population
+                newjson["area"] = area
+                newjson["gdp"] = gdp
+                newjson["income level"] = incomelevel
+                results.append(newjson)
         
-#     return jsonify(results)
+    return jsonify(results)
 
 @app.route("/api/v1.0/2015")
 def happiness2015():
