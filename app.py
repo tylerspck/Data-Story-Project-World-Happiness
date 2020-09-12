@@ -12,18 +12,20 @@ from datetime import datetime as dt, datetime
 from datetime import timedelta
 
 
-# DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
-#     user=postgres, pw=postgres, url=POSTGRES_URL, db=happinessDB)
+from sqlalchemy import create_engine
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-# # silence the deprecation warning
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/happinessDB')
 
-# db = SQLAlchemy(app)
+Base = automap_base()
+Base.prepare(engine, reflect=True)
 
-# db.init_app(app)
-# app = Flask(_name_)
+Base.classes.keys()
 
+happiness = Base.classes.happiness
+countrycodes = Base.classes.countrycodes
+wbcountries = Base.classes.wbcountries
+
+session = Session(engine)
 # Flask Setup
 app = Flask(__name__)
 
@@ -47,54 +49,56 @@ def happiness2015():
     # Create our session (link) from Python to the DB
     """Convert the query results to a dictionary using date as the key and prcp as the value."""
     # Query all passengers
-    # results = session.query(measurement.date, measurement.prcp).\
-    #     order_by(measurement.date).all()
-
-    # session.close()
-
-    # datalist = []
-
-    # for date, prcp in results:
-    #     newlist = {}
-    #     newlist[date] = prcp
-    #     datalist.append(newlist)
+    results2015 = session.query(happiness).filter(happiness.year('2015')).all()
 
     #Return the JSON representation of your dictionary.
-    return ()
+    return jasonify(results2105)
 
 
 @app.route("/api/v1.0/2016")
 def happiness2016():
 
-    return("hello")
+    results2016 = session.query(happiness).filter(happiness.year('2016')).all()
+
+    return jasonify(results2016)
 
 
 @app.route("/api/v1.0/2017")
 def happiness2017():
 
-    return()
+    results2017 = session.query(happiness).filter(happiness.year('2017')).all()
+
+    return jasonify(results2017)
 
 
 @app.route("/api/v1.0/2018")
 def happiness2018():
 
-    return()
+    results2018 = session.query(happiness).filter(happiness.year('2018')).all()
+
+    return jasonify(results2018)
 
 @app.route("/api/v1.0/2019")
 def happiness2019():
 
-    return()
+    results2019 = session.query(happiness).filter(happiness.year('2019')).all()
+
+    return jasonify(results2019)
 
 
 @app.route("/api/v1.0/2020")
 def happiness2020():
+    
+    results2020 = session.query(happiness).filter(happiness.year('2020')).all()
 
-    return()
+    return jasonify(results2020)
 
 @app.route("/api/v1.0/All")
 def happinessAll():
+
+     resultsall = session.query(happiness).all()
     
-    return()
+    return jasonify(resultsall)
 
 
 if __name__ == '__main__':
