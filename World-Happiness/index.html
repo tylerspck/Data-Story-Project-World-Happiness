@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title> World Happiness Project </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/><!-- Add Vue and BootstrapVue scripts just before the closing </body> tag -->
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+</head>
+
+<body>
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            
+            <button type="button" id="buttonlat">
+                <a target= "__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report" class="navbar-brand">Dataset Source</a>
+    
+            </button>
+    
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
+                        <div class="dropdown-menu">
+                            <a target= "__blank" href="temperature.html" class="dropdown-item">Factors</a>
+                            <a target= "__blank" href="humidity.html" class="dropdown-item">Happiest Countries</a>
+                            <a target= "__blank" href="cloudiness.html" class="dropdown-item">Global HeatMap</a>
+                            <a target= "__blank" href="wind_speed.html" class="dropdown-item">Regional Maps</a>
+                        </div>
+                    </div>
+                    <a target= "__blank" href="data.html" class="nav-item nav-link ">Data</a>
+                    <a target= "__blank" href="index1.html" class="nav-item nav-link ">Comparison</a>
+                </div>
+                
+            
+            </div>
+        </nav>
+        
+    </div>
+    
+   
+
+    <div class="container">
+        <div class="row">
+            <div class= "col-md-8">
+                <div class = "box box-left">
+                    <section id="Introduction">
+                        <h1 style="font-size: 40px; margin-bottom: 10px"> Visualising World Happiness </h1>
+                        <hr>
+                        <figure>
+                            <a target= "__blank" href="Images/landingResize.png" alt="Latitude vs X">
+
+                            </a>
+                            <img src="assets/world-happiness.jpg" width="100" height="100"
+                            alt="whr image" title="Landing page" style="float: left"/>
+                        </figure>
+                        <section id="Summary">
+                            <p style="font-size:14px; margin-left:50px; margin-right:80px"> &nbsp;&nbsp;&nbsp;The World Happiness Report is an annual publication from the UN's Sustainable &nbsp;&nbsp;&nbsp;Development Solutions Network. These reports aim to provide a holistic overview &nbsp;&nbsp;&nbsp;of a country's well-being by aggregating life evaluation scores from the <a target="__blank" href="https://www.gallup.com/analytics/247355/gallup-world-happiness-report.aspx">Gallup &nbsp;&nbsp;&nbsp;World Poll</a> survey. 
+                                The output is an average Happiness Score out of 10 for the &nbsp;&nbsp;&nbsp;country as a whole. Following score calculations, the Report goes a step further by estimating how strongly a set of 6 key development factors(economy, family/social support, life expectancy, absence of corruption, freedom, & generosity) correlate to higher life evaluations in each country.
+                                 These factors are scored out of 10, such that the sum of a country's residuals results in its overall Happiness Score. Rather, the values reflect how important the corresponding factors are to citizens' overall Happiness levels, offering some insight into priorities across countries and why some may rank higher than others. 
+                                 This project sources data from <a target="__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report">Kaggle's World Happiness Report dataset</a> to provide visualisations of how global happiness levels & the estimated weighting of key residuals have changed from 2015 to 2020. 
+                                 </br> <b>
+                                </p>
+      
+                            </p>
+
+                            </p>
+                            <ul>
+                                <li> Economy(GDP_per_Capita)</li>
+                                <li> Family</li>
+                                <li> Health(Life_Expectancy)</li>
+                                <li>Freedom</li> 
+                                <li>Trust(Government_Corruption)</li> 
+                                <li>Generosity</li>
+                                <li>Happiness</li>
+
+                            </ul>
+                        </section>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class= "box box-right">
+                    <h6> Visualizations</h6>
+                    <hr>
+                    <div class ="row">
+                        <div class="col-xs-6 col-sm-3 col-md-6">
+                            <figure>
+                                <a target="__blank" href= "temperature.html">
+                                    <img id="landing" src="" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-6">
+                            <figure>
+                                <a target="__blank" href="humidity.html">
+                                    <img id="landing" src="" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-6">
+                            <figure>
+                                <a target="__blank" href="cloudiness.html">
+                                    <img id="landing" src="" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-6">
+                            <figure>
+                                <a target="__blank" href="wind_speed.html">
+                                    <img id="landing" src="" alt="">
+                                </a>
+                            </figure>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="logic.js" ></script>
+</body>
+</html>
