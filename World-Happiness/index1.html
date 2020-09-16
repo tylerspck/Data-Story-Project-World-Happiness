@@ -307,13 +307,12 @@ input[type="range"]::-webkit-slider-runnable-track {
         </div>
         </br>
           <div id="metric_selector">
-            <button type="button" title="Happiness Score" id="start_button" class="button" style="color: #1d00ff;">Happiness</button>
-            <button type="button" title="Economy (GDP per Capita)" class="button" style="color: #0072f5;">Economy (GDP per Capita)</button>
-            <button type="button" title="Family" class="button" style="color: #fc5a03;">Family</button>
-            <button type="button" title="Health (Life Expectancy)" class="button" style="color: #008f68;">Health (Life Expectancy)</button>
-            <button type="button" title="Trust (Government Corruption)" class="button" style="color: #ed0239;">Trust (Government Corruption)</button>
-            <button type="button" title="Freedom" class="button" style="color: #ffa400;">Freedom</button>
-            <button type="button" title="Generosity" class="button" style="color: #fc03ca;">Generosity</button>
+            <button type="button" onclick="change_x_values(gdp)" title="Economy (GDP per Capita)" class="button" value="gdp" style="color: #0072f5;">Economy (GDP per Capita)</button>
+            <button type="button" onclick="change_x_values(family)" title="Family" class="button" value="family" style="color: #fc5a03;">Family</button>
+            <button type="button" onclick="change_x_values(health)" title="Health (Life Expectancy)" value="health" class="button" style="color: #008f68;">Health (Life Expectancy)</button>
+            <button type="button" onclick="change_x_values(trust)" title="Trust (Government Corruption)" value="trust" class="button" style="color: #ed0239;">Trust (Government Corruption)</button>
+            <button type="button" onclick="change_x_values(freedom)" title="Freedom" class="button" value="freedom" style="color: #ffa400;">Freedom</button>
+            <button type="button" onclick="change_x_values(generosity)" title="Generosity" class="button" value="generosity" style="color: #fc03ca;">Generosity</button>
             <div id = 'bubble'></div>
         <div id="compare_area" class="row_left" style="margin-top:350px">
         <h1>Compare Country Facrors (2015 - 2020)</h1><br>
