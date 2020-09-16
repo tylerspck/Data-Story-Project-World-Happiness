@@ -251,17 +251,30 @@ function optionChanged(id) {
 function init()
 {
     // var dropdown = d3.select("#selDataset");
+    var buttons = d3.select("# metric_selector");
     getPlots();
     d3.csv("data/merged_dataset.csv").then((data)=> {
         console.log(data)
+    
+        data.gdp.forEach(function(gdp) { 
+            buttons.append("button").text(gdp).property("value")
+            .on("mouseover", function(d){
+                d3.select(this)
+                .style("background", "orange")
+            })
+        });
 
-    //     data.names.forEach(function(name) { 
-    //         dropdown.append("option").text(name).property("value");
-    //     });
 
-    //     getPlots(data.names[0]);
-    //     getdempographicsInfo(data.names[0]);
+
+
+        // data.names.forEach(function(name) { 
+        //     dropdown.append("option").text(name).property("value");
+        // });
+
+        getPlots(data.names[0]);
+        getdempographicsInfo(data.names[0]);
     });
 }
 
 init();
+
