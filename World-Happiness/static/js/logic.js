@@ -43,8 +43,8 @@ function createMap(happiness, countries, legend) {
 
 //myMap to combine layers
   var myMap = L.map("map", {
-    center: [37.09, -95.71],
-    zoom: 3,
+    center: [30, 0],
+    zoom: 2,
     //start with satellitemap and both earthquakes and plates checked on
     layers: [satellitemap, happiness, countries]
   });
@@ -110,7 +110,7 @@ d3.json(happinessURL,function(responseHappiness) {
   legend.onAdd = function (map) {
   //included supporting css for info, info h4, legend, and legend i; h/t https://leafletjs.com/examples/choropleth/
 	var div = L.DomUtil.create('div', 'info legend'),
-		happiness_score = [0, 1, 2, 3, 4, 5],
+		happiness_score = [2, 3, 4, 5, 6, 7],
 		labels = [];
 	// loop through our magnitude intervals and generate a label with a colored square for each interval
 	for (var i = 0; i < happiness_score.length; i++) {
