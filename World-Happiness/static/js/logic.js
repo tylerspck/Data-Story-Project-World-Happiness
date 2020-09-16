@@ -55,12 +55,12 @@ function createMap(happiness, countries, legend) {
 };
 
 d3.json(happinessURL,function(responseHappiness) {
+	feature = responseHappiness
 	//nested country outlines
 	d3.json(countryURL, function(data) {
 	  //variable for country lines = countries
 	  var countries = L.geoJson(data, {
-		style: style,
-		// onEachFeature: onEachFeature,
+		style: style(feature.happiness_score),
 
 	})//.addTo(myMap);
 	//var countries now contains countryURL geJson data
