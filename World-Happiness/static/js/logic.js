@@ -44,9 +44,9 @@ function createMap(happiness, countries, legend) {
 //myMap to combine layers
   var myMap = L.map("map", {
     center: [30, 0],
-    zoom: 2,
+    zoom: 3,
     //start with satellitemap and both countries and happiness checked on; happiness 2nd so they're on top
-    layers: [satellitemap, countries, happiness]
+    layers: [outdoorsmap, countries, happiness]
   });
  
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
@@ -141,7 +141,7 @@ d3.json(happinessURL,function(responseHappiness) {
 				radius: (happy.happiness_score * 40000)
 			})
 			//tooltip popup includes href to URL with country name, happiness_score, and region
-			  .bindPopup("<h3>" + happy.country + "</h3><h3>Happiness: " + happy.happiness_score + "</h3> Region: " + happy.region);
+			  .bindPopup("<h3>" + happy.country + "</h3><h3>Capital: " + happy["capital city"] + "</h3><h3>Happiness: " + happy.happiness_score + "</h3> Region: " + happy.region);
 		
 			// Add the single marker to the happinessMarkers array
 			happinessMarkers.push(happinessMarker);
