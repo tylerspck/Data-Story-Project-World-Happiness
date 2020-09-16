@@ -44,9 +44,9 @@ function createMap(happiness, countries, legend) {
 //myMap to combine layers
   var myMap = L.map("map", {
     center: [30, 0],
-    zoom: 2,
-    //start with satellitemap and both earthquakes and plates checked on
-    layers: [satellitemap, happiness, countries]
+    zoom: 3,
+    //start with satellitemap and both countries and happiness checked on; happiness 2nd so they're on top
+    layers: [outdoorsmap, countries, happiness]
   });
  
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
@@ -55,23 +55,23 @@ function createMap(happiness, countries, legend) {
 };
 
 d3.json(happinessURL,function(responseHappiness) {
-	//nested fault lines
+	feature = responseHappiness
+	//nested country outlines
 	d3.json(countryURL, function(data) {
 	  //variable for country lines = countries
 	  var countries = L.geoJson(data, {
-		style: style,
-		// onEachFeature: onEachFeature,
+		style: style(feature.happiness_score),
 
 	})//.addTo(myMap);
 	//var countries now contains countryURL geJson data
 			
-	//variable for quakeData features section = earthquakes
+	//variable for happinesseData features section = happiness
 	var happiness = responseHappiness
 	var happiness_score = happiness.happiness_score
-	// Initialize an array to hold earthquake markers
+	// Initialize an array to hold happiness markers
 	var happinessMarkers = []
   
-	//choose circle and legend colors based on mag
+	//choose circle and legend colors based on happiness_score
 	function chooseColor(happiness_score) {
 	  switch (true) {
 	  case happiness_score < 3:
@@ -112,7 +112,7 @@ d3.json(happinessURL,function(responseHappiness) {
 	var div = L.DomUtil.create('div', 'info legend'),
 		happiness_score = [2, 3, 4, 5, 6, 7],
 		labels = [];
-	// loop through our magnitude intervals and generate a label with a colored square for each interval
+	// loop through our happiness_score intervals and generate a label with a colored square for each interval
 	for (var i = 0; i < happiness_score.length; i++) {
 		div.innerHTML +=
 			'<i style="background:' + chooseColor(happiness_score[i] ) + '"></i> ' +
@@ -121,32 +121,32 @@ d3.json(happinessURL,function(responseHappiness) {
 	return div;
   };
   //Legend Time done
-  //define earthquakes data 
-		  // Loop through the earthquakes features array
+  //define happiness data 
+		  // Loop through the happiness features array
 		  for (var i = 0; i < happiness.length; i++) {
 			var happy = happiness[i];
 			//pull datetime
 			// var datetime = earthquakes[i].properties.time;
 			// //formate datetime as date for display in Popup
 			// var date = new Date(datetime);
-			// For each earthquake, create a circle and bind a popup with the earthquake's place and magnitued (mag)
+			// For each happiness capital lat/long, create a circle and bind a popup with the capital's poisition and happiness_score
 			var happinessMarker = L.circle([happy.latitude, happy.longitude], {
 				fillOpacity: 0.8,
 			  //set circle outline to thin black
 				color: "black",//alternative to have full color circles: chooseColor(earthquake.properties.mag),
 				weight: 1,
-				  //set the color based on the chooseColor function passing mag
+				  //set the color based on the chooseColor function passing happiness_score
 				fillColor: chooseColor(happy.happiness_score),
 				//set the radius to the magnitued times X for better display
 				radius: (happy.happiness_score * 40000)
 			})
-			//tooltip popup includes href to URL with display name place, magnitude, and date
-			  .bindPopup("<h3>" + happy.country + "</h3><h3>Happiness: " + happy.happiness_score + "</h3> Region: " + happy.region);
+			//tooltip popup includes href to URL with country name, happiness_score, and region
+			  .bindPopup("<h3>" + happy.country + "</h3><h3>Capital: " + happy["capital city"] + "</h3><h3>Happiness: " + happy.happiness_score + "</h3> Region: " + happy.region);
 		
-			// Add the marker to the earthquakeMarkers array
+			// Add the single marker to the happinessMarkers array
 			happinessMarkers.push(happinessMarker);
 		  }
-	  //call createMap with layerGroup(earthquakeMarkers), var plates, and var legend
+	  //call createMap with layerGroup(happinessMarkers), var countries, and var legend
 	  createMap(L.layerGroup(happinessMarkers), countries, legend);
 	})
   });
