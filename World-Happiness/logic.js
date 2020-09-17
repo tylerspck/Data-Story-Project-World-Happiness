@@ -250,7 +250,7 @@ function optionChanged(id) {
 
 function init() {
     // var dropdown = d3.select("#selDataset");
-    var buttons = d3.select("# metric_selector");
+    var buttons = d3.select("#metric_selector");
     getPlots();
     d3.csv("data/merged_dataset.csv").then((data) => {
         console.log(data)
