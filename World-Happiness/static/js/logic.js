@@ -63,18 +63,24 @@ d3.json(happinessURL,function(responseHappiness) {
 	d3.json(countryURL, function(data) {
 	  //variable for country lines = countries
 		country_data = data.features
+		var i = 0
 		country_data.forEach(element => {
-			country_name = element.properties.name
-			if(country_name in feature) {
-				element.properties['happiness_score'] = feature.happiness_score
+			element.properties['happiness_score'] = null
+			country_code = element.id
+			// console.log(country_code)
+			for(var i = 0; i < feature.length; i++) {
+				if(country_code === feature[i].alpha3) {
+					element.properties['happiness_score'] = feature[i].happiness_score
+					break;
+				}
 			}
-			else {
-				console.log(country_name)
-			}
+
 		});
 
-	  var countries = L.geoJson(data, {
-		style: style(feature.happiness_score),
+		console.log(country_data)
+
+	  var countries = L.geoJson(country_data, {
+		style: style,
 
 	})//.addTo(myMap);
 	//var countries now contains countryURL geJson data
@@ -88,6 +94,8 @@ d3.json(happinessURL,function(responseHappiness) {
 	//choose circle and legend colors based on happiness_score
 	function chooseColor(happiness_score) {
 	  switch (true) {
+	  case happiness_score === null:
+			return "grey";
 	  case happiness_score < 3:
 		return "red";
 	  case happiness_score < 4:
@@ -105,7 +113,7 @@ d3.json(happinessURL,function(responseHappiness) {
 
 	 function style(feature) {
 		return {
-			fillColor: chooseColor(happiness_score),
+			fillColor: chooseColor(feature.properties.happiness_score),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
