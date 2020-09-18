@@ -80,76 +80,75 @@ d3.json(happinessURL,function(responseHappiness) {
 
 		console.log(country_data)
 
-	  var countries = L.geoJson(country_data, {
+		var countries = L.geoJson(country_data, {
 		style: style,
-
-	})//.addTo(myMap);
-	//var countries now contains countryURL geJson data
-			
-	//variable for happinesseData features section = happiness
-	var happiness = responseHappiness
-	var happiness_score = happiness.happiness_score
-	// Initialize an array to hold happiness markers
-	var happinessMarkers = []
-  
-	//choose circle and legend colors based on happiness_score
-	function chooseColor(happiness_score) {
-	  switch (true) {
-	  case happiness_score === null:
-			return "grey";
-	  case happiness_score < 3:
-		return "red";
-	  case happiness_score < 4:
-		return "darkorange";
-	  case happiness_score < 5:
-		return "orange";
-	  case happiness_score < 6:
-		return "yellow";
-	  case happiness_score < 7:
-		return "greenyellow";
-	  default:
-		return "green";
-	  }
-	 };
-
-	 function style(feature) {
-		return {
-			fillColor: chooseColor(feature.properties.happiness_score),
-			weight: 2,
-			opacity: 1,
-			color: 'white',
-			dashArray: '3',
-			fillOpacity: 0.8
+		})//.addTo(myMap);
+		//var countries now contains countryURL geJson data
+				
+		//variable for happinesseData features section = happiness
+		var happiness = responseHappiness
+		var happiness_score = happiness.happiness_score
+		// Initialize an array to hold happiness markers
+		var happinessMarkers = []
+	
+		//choose circle and legend colors based on happiness_score
+		function chooseColor(happiness_score) {
+			switch (true) {
+			case happiness_score === null:
+					return "grey";
+			case happiness_score < 3:
+				return "red";
+			case happiness_score < 4:
+				return "darkorange";
+			case happiness_score < 5:
+				return "orange";
+			case happiness_score < 6:
+				return "yellow";
+			case happiness_score < 7:
+				return "greenyellow";
+			default:
+				return "green";
+			}
 		};
-	};
 
-	function onEachFeature(feature, layer) {
-		layer.bindTooltip("Country: " + happiness.country + "<br>Happiness: " + happiness_score + "<br>Region: " + happiness.region);
-	}
-  
-  //Legend Time: control to add legend
-  var legend = L.control({position: 'bottomright'});
-  
-  legend.onAdd = function (map) {
-  //included supporting css for info, info h4, legend, and legend i; h/t https://leafletjs.com/examples/choropleth/
-	var div = L.DomUtil.create('div', 'info legend'),
-		happiness_score = [2, 3, 4, 5, 6, 7],
-		labels = [];
-	// loop through our happiness_score intervals and generate a label with a colored square for each interval
-	//top value grey box value NA for grey countries not found in happinessURL data
-	div.innerHTML += '<i style="background:grey"></i> ' + 'NA <br>';
-	happiness_score[i] + (happiness_score[i + 1] ? '&ndash;' + happiness_score[i + 1] + '<br>' : '+');
-	for (var i = 0; i < happiness_score.length; i++) {
-		div.innerHTML +=
-			'<i style="background:' + chooseColor(happiness_score[i] ) + '"></i> ' +
+		function style(feature) {
+			return {
+				fillColor: chooseColor(feature.properties.happiness_score),
+				weight: 2,
+				opacity: 1,
+				color: 'white',
+				dashArray: '3',
+				fillOpacity: 0.8
+			};
+		};
+
+		function onEachFeature(feature, layer) {
+			layer.bindTooltip("Country: " + happiness.country + "<br>Happiness: " + happiness_score + "<br>Region: " + happiness.region);
+		}
+	
+		//Legend Time: control to add legend
+		var legend = L.control({position: 'bottomright'});
+	
+		legend.onAdd = function (map) {
+			//included supporting css for info, info h4, legend, and legend i; h/t https://leafletjs.com/examples/choropleth/
+			var div = L.DomUtil.create('div', 'info legend'),
+				happiness_score = [2, 3, 4, 5, 6, 7],
+				labels = [];
+			// loop through our happiness_score intervals and generate a label with a colored square for each interval
+			//top value grey box value NA for grey countries not found in happinessURL data
+			div.innerHTML += '<i style="background:grey"></i> ' + 'NA <br>';
 			happiness_score[i] + (happiness_score[i + 1] ? '&ndash;' + happiness_score[i + 1] + '<br>' : '+');
-	}
-	return div;
-  };
-  //Legend Time done
-  //define happiness data 
-		  // Loop through the happiness features array
-		  for (var i = 0; i < happiness.length; i++) {
+			for (var i = 0; i < happiness_score.length; i++) {
+				div.innerHTML +=
+					'<i style="background:' + chooseColor(happiness_score[i] ) + '"></i> ' +
+					happiness_score[i] + (happiness_score[i + 1] ? '&ndash;' + happiness_score[i + 1] + '<br>' : '+');
+			}
+			return div;
+		};
+		//Legend Time done
+		//define happiness data 
+		// Loop through the happiness features array
+		for (var i = 0; i < happiness.length; i++) {
 			var happy = happiness[i];
 			//pull datetime
 			// var datetime = earthquakes[i].properties.time;
@@ -158,37 +157,37 @@ d3.json(happinessURL,function(responseHappiness) {
 			// For each happiness capital lat/long, create a circle and bind a popup with the capital's poisition and happiness_score
 			var happinessMarker = L.circle([happy.latitude, happy.longitude], {
 				fillOpacity: 0.8,
-			  //set circle outline to thin black
+			//set circle outline to thin black
 				color: "black",//alternative to have full color circles: chooseColor(earthquake.properties.mag),
 				weight: 1,
-				  //set the color based on the chooseColor function passing happiness_score
+				//set the color based on the chooseColor function passing happiness_score
 				fillColor: chooseColor(happy.happiness_score),
 				//set the radius to the magnitued times X for better display
 				radius: (happy.happiness_score * 40000)
 			})
 			//tooltip popup includes href to URL with country name, happiness_score, and region
-			  .bindPopup("<h3>" + happy.country + "</h3><h4>Happiness: " + happy.happiness_score + "</h4> Capital: " + happy["capital city"] + "<br> Region: " + happy.region);
+			.bindPopup("<h3>" + happy.country + "</h3><h4>Happiness: " + happy.happiness_score + "</h4> Capital: " + happy["capital city"] + "<br> Region: " + happy.region);
 		
 			// Add the single marker to the happinessMarkers array
 			happinessMarkers.push(happinessMarker);
-          }
-          //HEAT MAP
-          var heatArray = [];
+		}
+		//HEAT MAP
+		var heatArray = [];
 
-        //   for (var i = 0; i < country_data.length; i++) {
-        //       var location = L.geoJson(country_data);
-		// 		console.log(loacation)
-        //       if (location) {
-        //           heatArray.push([location.coordinates[1], location.coordinates[0]]);
-        //       }
-        //   }
+		for (var i = 0; i < country_data.length; i++) {
+			var location = L.geoJson(country_data);
+			console.log(location)
+			if (location) {
+				heatArray.push([location.coordinates[1], location.coordinates[0]]);
+			}
+		}
 
-          var heat = L.heatLayer(heatArray, {
-              radius: 35,
-              blur: 35,
-              gradient: { .05: "yellow", .1: "orange", .15: "red" }
-          });
-	  //call createMap with layerGroup(happinessMarkers), var countries, and var legend
-	  createMap(heat, L.layerGroup(happinessMarkers), countries, legend);
+		var heat = L.heatLayer(heatArray, {
+			radius: 35,
+			blur: 35,
+			gradient: { .05: "yellow", .1: "orange", .15: "red" }
+		});
+		//call createMap with layerGroup(happinessMarkers), var countries, and var legend
+		createMap(heat, L.layerGroup(happinessMarkers), countries, legend);
 	})
-  });
+});
