@@ -1,8 +1,15 @@
 //define json URLs
-var happinessURL ="http://localhost:5000/api/v1.0/2015"
+// var happinessURL ="http://localhost:5000/api/v1.0/2015"
 var countryURL = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
+//var myMap for slider refreshes
+var myMap = null;
 
-function refreshMap(mapURL) {
+//function to refreshMap on year slider change
+function refreshMap(happinessURL) {
+	//if myMap exists, remove it to refresh
+	if(myMap != undefined || myMap != null){
+		myMap.remove();
+	}
 //CREATEMAP start
 //createMap with happiness, countries, and legend variables
 function createMap(happiness, countries, legend) {
@@ -43,7 +50,7 @@ function createMap(happiness, countries, legend) {
   };
 
 //myMap to combine layers
-  var myMap = L.map("map", {
+  myMap = L.map("map", {
     center: [30, 0],
     zoom: 2,
     //start with satellitemap and both countries and happiness checked on; happiness 2nd so they're on top
@@ -55,9 +62,10 @@ function createMap(happiness, countries, legend) {
   legend.addTo(myMap)
 };
 
+//country_data to combine countryURL geojson and happinessURL happiness_score by country code
 var country_data;
 
-d3.json(mapURL,function(responseHappiness) {
+d3.json(happinessURL,function(responseHappiness) {
 	feature = responseHappiness
 	// console.log(feature)
 	//nested country outlines
@@ -78,7 +86,7 @@ d3.json(mapURL,function(responseHappiness) {
 
 		});
 
-		console.log(country_data)
+		// console.log(country_data)
 
 	  var countries = L.geoJson(country_data, {
 		style: style,
@@ -179,9 +187,9 @@ d3.json(mapURL,function(responseHappiness) {
 };
 
   d3.select("#year_slider").on("change", function () {
-    var mapURL = "http://localhost:5000/api/v1.0/" + d3.select("#year_slider").property("value");
-	console.log(mapURL)
-	refreshMap(mapURL)
+    var happinessURL = "http://localhost:5000/api/v1.0/" + d3.select("#year_slider").property("value");
+	// console.log(happinessURL)
+	refreshMap(happinessURL)
 });
 
 function init() {
