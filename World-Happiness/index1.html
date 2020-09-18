@@ -236,7 +236,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 </style>
 <html>
-<link rel="icon" href="whr-heart.png" type="image/x-icon" />
+<link rel="icon" href="assets/whr-heart.png" type="image/x-icon" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
@@ -250,91 +250,80 @@ input[type="range"]::-webkit-slider-runnable-track {
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
 
 </head>
-  <body>
+<body>
 
-    <div class="bs-example">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-          
-          <button type="button" id="buttonlat">
-              <a target= "__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report" class="navbar-brand">Dataset Source</a>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a target="__blank" href="index.html" class="nav-item nav-link ">Home</a>
+      <button type="button" id="buttonlat">
+        <a target="__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report" class="navbar-brand">Dataset
+          Source</a>
   
-          </button>
+      </button>
   
-          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-              <div class="navbar-nav ml-auto">
-                  
-                  <div class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
-                      <div class="dropdown-menu">
-                          <a target= "__blank" href="temperature.html" class="dropdown-item">Factors</a>
-                          <a target= "__blank" href="humidity.html" class="dropdown-item">Happiest Countries</a>
-                          <a target= "__blank" href="cloudiness.html" class="dropdown-item">Global HeatMap</a>
-                          <a target= "__blank" href="wind_speed.html" class="dropdown-item">Regional Maps</a>
-                      </div>
-                  </div>
-                  <a target= "__blank" href="data.html" class="nav-item nav-link ">Data</a>
-                  <a target= "__blank" href="index1.html" class="nav-item nav-link ">Comparison</a>
-              </div>
-              
-          
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav ml-auto">
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
+            <div class="dropdown-menu">
+              <a target="__blank" href="temperature.html" class="dropdown-item">Factors</a>
+              <a target="__blank" href="humidity.html" class="dropdown-item">Happiest Countries</a>
+              <a target="__blank" href="color_map.html" class="dropdown-item">Global Map</a>
+              <a target="__blank" href="wind_speed.html" class="dropdown-item">Regional Maps</a>
+            </div>
           </div>
-      </nav>
-      
-  </div>
-      
-      <div id="main_summary">
-      
-        <h1 style="font-size: 40px; margin-bottom: 10px">Visualising World Happiness Dashboard</h1>
-        <div id="legend">
-         <!-- <div class="legend"> <p class="legend-labels"><span class="key-dot hapscore"></span>Happiness</p> </div> -->
-         <div class="legend"> <p class="legend-labels"><span class="key-dot econ"></span>Economy (GDP per Capita)</p> </div>
-         <div class="legend"> <p class="legend-labels"><span class="key-dot fam"></span>Family</p></div>
-         <div class="legend"> <p class="legend-labels"><span class="key-dot health"></span>Health (Life Expectancy)</p> </div>
-         <div class="legend"> <p class="legend-labels"><span class="key-dot trust"></span>Trust (Government Corruption)</p> </div>
-         <div class="legend"> <p class="legend-labels"><span class="key-dot freedom"></span>Freedom</p></div>
-         <div class="legend"> <p class="legend-labels"><span class="key-dot generosity"></span>Generosity</p></div>
-       </div>
-       <p style="font-size:14px; margin-left:50px; margin-right:50px">  </br><b></b></p>
-      </div>
-      </br>
-      <div id="map_area" class="row_left">
-        <div id="slider_div">
-          <form>
-            <label for="year" style="font-size: 18px;"><b style="font-family: Avenir;">Year:</b></label>
-            <input type="range" min=2015 max=2020 step=1 id="year_slider" value=2015 oninput="selected_year.value = year_slider.value">
-            <output name="selected_year" id="selected_year" style="font-size: 12px; font-weight: bold;">2015</output>
-          </form>
+          <a target="__blank" href="data.html" class="nav-item nav-link ">Data</a>
+          <a target="__blank" href="index1.html" class="nav-item nav-link ">Comparison</a>
         </div>
-        </br>
-          <div id="metric_selector">
-<<<<<<< HEAD
-            <!-- <button type="button" title="Happiness Score" id="start_button" class="button" style="color: #1d00ff;">Happiness</button> -->
-            <button type="button" title="Economy (GDP per Capita)" id="gdp"class="button" style="color: #0072f5;">Economy (GDP per Capita)</button>
-            <button type="button" title="Family" id="family"class="button" style="color: #fc5a03;">Family</button>
-            <button type="button" title="Health (Life Expectancy)" id="health"class="button" style="color: #008f68;">Health (Life Expectancy)</button>
-            <button type="button" title="Trust (Government Corruption)" id="trust"class="button" style="color: #ed0239;">Trust (Government Corruption)</button>
-            <button type="button" title="Freedom" id="freedom"class="button" style="color: #ffa400;">Freedom</button>
-            <button type="button" title="Generosity" id="generosity"class="button" style="color: #fc03ca;">Generosity</button>
-=======
-            <button type="button" onclick="change_x_values(gdp)" title="Economy (GDP per Capita)" class="button" value="gdp" style="color: #0072f5;">Economy (GDP per Capita)</button>
-            <button type="button" onclick="change_x_values(family)" title="Family" class="button" value="family" style="color: #fc5a03;">Family</button>
-            <button type="button" onclick="change_x_values(health)" title="Health (Life Expectancy)" value="health" class="button" style="color: #008f68;">Health (Life Expectancy)</button>
-            <button type="button" onclick="change_x_values(trust)" title="Trust (Government Corruption)" value="trust" class="button" style="color: #ed0239;">Trust (Government Corruption)</button>
-            <button type="button" onclick="change_x_values(freedom)" title="Freedom" class="button" value="freedom" style="color: #ffa400;">Freedom</button>
-            <button type="button" onclick="change_x_values(generosity)" title="Generosity" class="button" value="generosity" style="color: #fc03ca;">Generosity</button>
->>>>>>> f6e955eb5725b36526729f07597483cefab7d2a9
-            <div id = 'bubble'></div>
-        <div id="compare_area" class="row_left" style="margin-top:350px">
-        <h1>Compare Country Facrors (2015 - 2020)</h1><br>
-        <p><i>Pinch to zoom, drag to pan</i></p>
       </div>
-    </br>
+    </nav>
+  </div>
+    
+  <div id="main_summary">
   
-      
+    <h1 style="font-size: 40px; margin-bottom: 10px">Visualising World Happiness Dashboard</h1>
+    <div id="legend">
+      <!-- <div class="legend"> <p class="legend-labels"><span class="key-dot hapscore"></span>Happiness</p> </div> -->
+      <div class="legend"> <p class="legend-labels"><span class="key-dot econ"></span>Economy (GDP per Capita)</p> </div>
+      <div class="legend"> <p class="legend-labels"><span class="key-dot fam"></span>Family</p></div>
+      <div class="legend"> <p class="legend-labels"><span class="key-dot health"></span>Health (Life Expectancy)</p> </div>
+      <div class="legend"> <p class="legend-labels"><span class="key-dot trust"></span>Trust (Government Corruption)</p> </div>
+      <div class="legend"> <p class="legend-labels"><span class="key-dot freedom"></span>Freedom</p></div>
+      <div class="legend"> <p class="legend-labels"><span class="key-dot generosity"></span>Generosity</p></div>
     </div>
+    <p style="font-size:14px; margin-left:50px; margin-right:50px">  </br><b></b></p>
+  </div>
+  </br>
+  <div id="map_area" class="row_left">
+    <div id="slider_div">
+      <form>
+        <label for="year" style="font-size: 18px;"><b style="font-family: Avenir;">Year:</b></label>
+        <input type="range" min=2015 max=2020 step=1 id="year_slider" value=2015 oninput="selected_year.value = year_slider.value">
+        <output name="selected_year" id="selected_year" style="font-size: 12px; font-weight: bold;">2015</output>
+      </form>
+    </div>
+  
+    </br>
+      <div id="metric_selector">
+        <button type="button"  title="Economy (GDP per Capita)" class="button active" value="gdp" style="color: #0072f5;">Economy (GDP per Capita)</button>
+        <button type="button"  title="Family" class="button" value="family" style="color: #fc5a03;">Family</button>
+        <button type="button"  title="Health (Life Expectancy)" value="health" class="button" style="color: #008f68;">Health (Life Expectancy)</button>
+        <button type="button"  title="Trust (Government Corruption)" value="trust" class="button" style="color: #ed0239;">Trust (Government Corruption)</button>
+        <button type="button"  title="Freedom" class="button" value="freedom" style="color: #ffa400;">Freedom</button>
+        <button type="button"  title="Generosity" class="button" value="generosity" style="color: #fc03ca;">Generosity</button>
+      </div>
+      <div id = 'bubble'></div>
+    <div id="compare_area" class="row_left" style="margin-top:350px">
+      <h1>Compare Country Facrors (2015 - 2020)</h1><br>
+      <p><i>Pinch to zoom, drag to pan</i></p>
+    </div>
+  </br>
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script type="text/javascript" src="logic.js" ></script>
+    
+
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="logic.js" ></script>
 </body>
 </html>
