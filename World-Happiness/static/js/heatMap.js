@@ -4,7 +4,7 @@ var countryURL = "https://raw.githubusercontent.com/johan/world.geo.json/master/
 
 //CREATEMAP start
 //createMap with happiness, countries, and legend variables
-function createMap(happiness, countries, legend) {
+function createMap(heat, happiness, countries, legend) {
     // Create the tile layer that will be the light background of our map
     var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -37,8 +37,9 @@ function createMap(happiness, countries, legend) {
 };
 //overlayMaps contains all marker options
   var overlayMaps = {
-      "Happiness": happiness,
-      "Countries": countries
+    "Heat Map": heat,  
+    "Happiness": happiness,
+    "Countries": countries
   };
 
 //myMap to combine layers
@@ -170,8 +171,24 @@ d3.json(happinessURL,function(responseHappiness) {
 		
 			// Add the single marker to the happinessMarkers array
 			happinessMarkers.push(happinessMarker);
-		  }
+          }
+          //HEAT MAP
+          var heatArray = [];
+
+          for (var i = 0; i < country_data.length; i++) {
+              var location = L.geoJson(country_data);
+
+              if (location) {
+                  heatArray.push([location.coordinates[1], location.coordinates[0]]);
+              }
+          }
+
+          var heat = L.heatLayer(heatArray, {
+              radius: 35,
+              blur: 35,
+              gradient: { .05: "yellow", .1: "orange", .15: "red" }
+          });
 	  //call createMap with layerGroup(happinessMarkers), var countries, and var legend
-	  createMap(L.layerGroup(happinessMarkers), countries, legend);
+	  createMap(heat, L.layerGroup(happinessMarkers), countries, legend);
 	})
   });
