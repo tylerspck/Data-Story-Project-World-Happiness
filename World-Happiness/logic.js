@@ -83,18 +83,37 @@ else if (factor === 'family'){
     // console.log(x_axis)
     // console.log(country)
     var trace1 = {
-        x: x_axis,
-        y: happiness,
-        type: 'scatter',
-        mode: "markers",
-        marker: {
-            size: happiness,
-            color: x_axis
-        },
-        // hovertemplate:,
-        text: ["test"]
-        // `<br><b>Happiness Score</b>: ${happiness}` + `<br><b>${x_tile}: ${x_axis}</b>`
+      x: x_axis,
+      y: happiness,
+      text: country,
+      type: "scatter",
+      mode: "markers",
+      marker: {
+        size: happiness,
+        color: x_axis,
+      },
+      hovertemplate:
+        `<b>${text}</b><br><br>` +
+        `%${yaxis.title.text}: ${happiness}<br>` +
+        `${xaxis.title.text}: ${x_axis}<br>`+
+         `<extra></extra>`
+        // `<br><b>Country</b>: ${country}` +
+        // `<br><b>Happiness Score</b>: ${happiness}` +
+        // `<br><b>${x_tile}: ${x_axis}</b>`,
+
+      // `<br><b>Happiness Score</b>: ${happiness}` + `<br><b>${x_tile}: ${x_axis}</b>`
     };
+
+    // trace.push({
+    //   x: xValueList,
+    //   y: yValueList,
+    //   mode: "markers",
+    //   type: "scatter",
+    //   text: textList,
+    //   showlegend: true,
+    //   name: "trace-" + label,
+    // });
+
 
     var layout1 = {
         xaxis:{title: x_tile},
