@@ -2,6 +2,7 @@
 var happinessURL ="http://localhost:5000/api/v1.0/2015"
 var countryURL = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
 
+function refreshMap(mapURL) {
 //CREATEMAP start
 //createMap with happiness, countries, and legend variables
 function createMap(happiness, countries, legend) {
@@ -56,9 +57,9 @@ function createMap(happiness, countries, legend) {
 
 var country_data;
 
-d3.json(happinessURL,function(responseHappiness) {
+d3.json(mapURL,function(responseHappiness) {
 	feature = responseHappiness
-	console.log(feature)
+	// console.log(feature)
 	//nested country outlines
 	d3.json(countryURL, function(data) {
 	  //variable for country lines = countries
@@ -174,4 +175,17 @@ d3.json(happinessURL,function(responseHappiness) {
 	  //call createMap with layerGroup(happinessMarkers), var countries, and var legend
 	  createMap(L.layerGroup(happinessMarkers), countries, legend);
 	})
-  });
+  })
+};
+
+  d3.select("#year_slider").on("change", function () {
+    var mapURL = "http://localhost:5000/api/v1.0/" + d3.select("#year_slider").property("value");
+	console.log(mapURL)
+	refreshMap(mapURL)
+});
+
+function init() {
+    refreshMap("http://localhost:5000/api/v1.0/2015")
+};
+
+init()
