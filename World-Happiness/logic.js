@@ -22,14 +22,12 @@ var svg = d3.select("body").append("svg")
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`)
 
-function getPlots(factor) {
-    // Get all plots for a particular ID
-<<<<<<< HEAD
-console.log('building plot')
-d3.csv("data/merged_dataset.csv").then(function(data){
-    console.log(data)
-
+function getplots(factor, newyear) {
+d3.json("http://127.0.0.1:5000/api/v1.0/All").then(function (data) {
+    // console.log(data);
+    var filtered_year_data = data.filter(x => x.Year == newyear)
     var gdp = []
+    var country = []
     var happiness = []
     var freedom = []
     var trust = []
@@ -37,62 +35,73 @@ d3.csv("data/merged_dataset.csv").then(function(data){
     var generosity = []
     var family = []
     
-   data.forEach(function(country) { 
-        gdp.push(+country["Economy(GDP_per_Capita)"]);
-        happiness.push(+country["Happiness_Score"]);
-        freedom.push(+country["Freedom"]);
-        trust.push(+country["Trust(Government_Corruption)"]);
-        health.push(+country["Health(Life_Expectancy)"]);
-        generosity.push(+country["Generosity"]);
-        family.push(+country["Family"]);
-        
-   })
-   console.log(gdp);
-   console.log(happiness);
-   console.log(freedom);
-   console.log(trust);
-   console.log(health );
-   console.log(generosity);
-      
-   if (factor ==='gdp'){
+    filtered_year_data.forEach(function (x) {
+        country.push(x["country"]);
+        gdp.push(+x["economy"]);
+        happiness.push(+x["happiness_score"]);
+        freedom.push(+x["freedom"]);
+        trust.push(+x["trust"]);
+        health.push(+x["health"]);
+        generosity.push(+x["generosity"]);
+        family.push(+x["family"]);
+    });
+//    console.log(gdp);
+//    console.log(happiness);
+//    console.log(freedom);
+//    console.log(trust);
+//    console.log(health);
+//    console.log(generosity);
+
+var x_axis
+var x_tile
+
+if (factor ==='gdp'){
         x_axis = gdp
         x_tile = "Economy(GDP_per_Capita)"
-   }
-   else if (factor === 'freedom'){
-       x_axis = freedom
-       x_tile = "Freedom"
-   }
-   else if (factor === 'trust'){
+}
+else if (factor === 'freedom'){
+    x_axis = freedom
+    x_tile = "Freedom"
+}
+else if (factor === 'trust'){
     x_axis = trust
     x_tile = "Trust(Government_Corruption)"
-   }
-    else if (factor === 'health'){
+}
+else if (factor === 'health'){
     x_axis = health
     x_tile = "Health(Life_Expectancy)"
     }
-    else if (factor === 'generosity'){
+else if (factor === 'generosity'){
     x_axis = generosity
     x_tile = "Generosity"
     }
-    else if (factor === 'family'){
+else if (factor === 'family'){
     x_axis = family
     x_tile = "Family"
     }
-
+    // console.log(happiness)
+    // console.log(x_axis)
+    // console.log(country)
     var trace1 = {
         x: x_axis,
         y: happiness,
+        type: 'scatter',
         mode: "markers",
         marker: {
             size: happiness,
-            color: gdp
+            color: x_axis
         },
-        
-        text: gdp
+        // hovertemplate:,
+        text: ["test"]
+        // `<br><b>Happiness Score</b>: ${happiness}` + `<br><b>${x_tile}: ${x_axis}</b>`
     };
 
     var layout1 = {
-        xaxis:{title:x_tile},
+        xaxis:{title: x_tile},
+        hoverlabel: {
+            bgcolor: '#fff'
+        },
+        // hovermode: "closest",
         height: 500,
         width: 1000
     };
@@ -103,277 +112,42 @@ d3.csv("data/merged_dataset.csv").then(function(data){
 
 
 });
-
 }
 
-function init()
-{
-    console.log('init')
-    getPlots('gdp');
-    
-}
 
-init();
-
-var buttons = d3.selectAll(".button")
-buttons.on('click', function(){
+d3.selectAll(".button").on('click', function () {
     console.log('button clicked')
-    getPlots(this.id)
+    var btnContainer = document.getElementById("metric_selector");
+
+    // Get all buttons with class="btn" inside the container
+    var btns = btnContainer.getElementsByClassName("button");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+    var factor = this.value
+    var newyear = d3.select("#year_slider").property("value");
+    // console.log(factor)
+    getplots(factor, newyear)
 })
 
 
-  
-=======
+d3.select("#year_slider").on("change", function () {
+    var newyear = d3.select("#year_slider").property("value");
+    var factor = d3.selectAll(".active").property("value");
+    console.log(factor)
+    getplots(factor, newyear)
 
-    d3.csv("data/merged_dataset.csv").then(function (data) {
-        console.log(data)
-        //     var ids = data.custom.geo[0].otu_ids;
-        //     console.log(ids)
-        //     var samplevalues = data.custom.geo[0].sample_values.slice(0,10).reverse();
-        //     console.log(samplevalues)
-        //     var otulabels = data.custom.geo[0].otu_labels.slice(0,10);
-        //     console.log(otulabels)
-        //     var otu_top = (data.custom.geo[0].otu_ids.slice(0,10)).reverse();
-        //     console.log(otu_top)
-
-        // var otu_id = otu_top.map(d => "otu" + d);
-        // console.log(`OTU IDS: ${otu_id}`)
-        // var otulabels = data.custom.geo[0].otu_labels.slice(0,10);
-        // console.log(`OTU Labels: ${otulabels}`)
-
-
-        // var trace = {
-        //     x: samplevalues,
-        //     y: otu_id,
-        //     hovertemplate: otulabels,
-        //     marker: {
-        //     color: 'blue'},
-        //     type: "bar",
-        //     orientation: "h",
-        // };
-
-        // var data_trace1 = [trace];
-
-
-        // var layout ={
-        //     title: "Top 10 OTU",
-        //     yaxis:{
-        //         tickmode:"linear",
-        //     },
-        //     margin: {
-        //         l: 100,
-        //         r: 100,
-        //         t: 100,
-        //         b: 40
-
-        //     }
-        // };
-        // Plotly.newPlot("bar", data_trace1, layout);
-
-        // console.log("Before bubble");
-        var gdp = []
-        var happiness = []
-        var freedom = []
-        var trust = []
-        var health = []
-        var generosity = []
-        var family = []
-
-        data.forEach(function (country) {
-            gdp.push(+country["Economy(GDP_per_Capita)"]);
-            happiness.push(+country["Happiness_Score"]);
-            freedom.push(+country["Freedom"]);
-            trust.push(+country["Trust(Government_Corruption)"]);
-            health.push(+country["Health(Life_Expectancy)"]);
-            generosity.push(+country["Generosity"]);
-            family.push(+country["Family"]);
-
-        })
-        console.log(gdp);
-        console.log(happiness);
-        console.log(freedom);
-        console.log(trust);
-        console.log(health);
-        console.log(generosity);
-
-
-        var trace1 = {
-            x: gdp,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: gdp
-            },
-
-            text: gdp
-        };
-
-        var layout1 = {
-            xaxis: { title: "Economy(GDP_per_Capita)" },
-            height: 500,
-            width: 1000
-        };
-
-        var data1 = [trace1];
-
-        Plotly.newPlot("bubble", data1, layout1);
-
-        var trace2 = {
-            x: family,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: family
-            },
-            text: family
-        };
-
-        var layout2 = {
-            xaxis: { title: "Family" },
-            height: 500,
-            width: 1000
-        };
-
-        var data2 = [trace2];
-        Plotly.newPlot("bubble", data2, layout2);
-
-        var trace3 = {
-            x: health,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: health
-            },
-            text: health
-        };
-
-        var layout3 = {
-            xaxis: { title: "Health(Life_Expectancy)" },
-            height: 500,
-            width: 1000
-        };
-
-        var data3 = [trace3];
-        Plotly.newPlot("bubble", data3, layout3);
-
-        var trace4 = {
-            x: trust,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: trust
-            },
-            text: trust
-        };
-
-        var layout4 = {
-            xaxis: { title: "Trust(Government_Corruption)" },
-            height: 500,
-            width: 1000
-        };
-
-        var data4 = [trace4];
-        Plotly.newPlot("bubble", data4, layout4);
-
-
-        var trace5 = {
-            x: freedom,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: freedom
-            },
-            text: freedom
-        };
-
-        var layout5 = {
-            xaxis: { title: "Freedom " },
-            height: 500,
-            width: 1000
-        };
-
-        var data5 = [trace5];
-        Plotly.newPlot("bubble", data5, layout5);
-
-        var trace6 = {
-            x: generosity,
-            y: happiness,
-            mode: "markers",
-            marker: {
-                size: happiness,
-                color: generosity
-            },
-            text: generosity
-        };
-
-        var layout6 = {
-            xaxis: { title: "Generosity" },
-            height: 500,
-            width: 1000
-        };
-
-        var data6 = [trace6];
-        Plotly.newPlot("bubble", data6, layout6);
-
-
-    });
-
-}
-
-function getdempographicsInfo(id) {
-    d3.csv("data/merged_dataset.csv").then((data) => {
-        var metadata = data.metadata;
-        console.log(metadata)
-
-        var results = metadata.filter(meta => meta.id.toString() === id)[0];
-        console.log(results);
-        var demoInfo = d3.select("#sample-metadata");
-
-        demoInfo.html("");
-
-        Object.entries(results).forEach((key) => {
-            demoInfo.append("h5").text(key[0].toUpperCase() + ":" + key[1] + "\n");
-        });
-    });
-}
-
-function optionChanged(id) {
-
-    getdempographicsInfo(id);
-    gaugeChart(id)
-}
+});
 
 function init() {
-    // var dropdown = d3.select("#selDataset");
-    var buttons = d3.select("#metric_selector");
-    getPlots();
-    d3.csv("data/merged_dataset.csv").then((data) => {
-        console.log(data)
+    getplots("gdp", 2015)
+};
 
-        data.gdp.forEach(function (gdp) {
-            buttons.append("button").text(gdp).property("value")
-                .on("mouseover", function (d) {
-                    d3.select(this)
-                        .style("background", "orange")
-                })
-        });
+init()
 
-
-
-
-        // data.names.forEach(function(name) { 
-        //     dropdown.append("option").text(name).property("value");
-        // });
-
-        getPlots(data.names[0]);
-        getdempographicsInfo(data.names[0]);
-    });
-}
-
-init();
->>>>>>> f6e955eb5725b36526729f07597483cefab7d2a9

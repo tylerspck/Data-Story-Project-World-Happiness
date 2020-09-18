@@ -175,13 +175,13 @@ d3.json(happinessURL,function(responseHappiness) {
           //HEAT MAP
           var heatArray = [];
 
-          for (var i = 0; i < country_data.length; i++) {
-              var location = L.geoJson(country_data);
-
-              if (location) {
-                  heatArray.push([location.coordinates[1], location.coordinates[0]]);
-              }
-          }
+        //   for (var i = 0; i < country_data.length; i++) {
+        //       var location = L.geoJson(country_data);
+		// 		console.log(loacation)
+        //       if (location) {
+        //           heatArray.push([location.coordinates[1], location.coordinates[0]]);
+        //       }
+        //   }
 
           var heat = L.heatLayer(heatArray, {
               radius: 35,
