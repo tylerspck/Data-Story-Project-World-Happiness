@@ -1,5 +1,5 @@
 //define json URLs
-// var happinessURL ="http://localhost:5000/api/v1.0/2015"
+// var happinessURL defined on line 190; combines "http://localhost:5000/api/v1.0/" plus year (init as "2015")
 var countryURL = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
 //var myMap for slider refreshes
 var myMap = null;
