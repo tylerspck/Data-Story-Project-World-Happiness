@@ -22,27 +22,27 @@ var margin = {
 function getPlots(factor) {
     // Get all plots for a particular ID
 console.log('building plot')
-d3.csv("data/merged_dataset.csv").then(function(data){
-    // console.log(data)
+d3.json("http://localhost:5000/api/v1.0/All").then(function(data){
+    console.log(data)
 
-    var gdp = []
-    var happiness = []
-    var freedom = []
-    var trust = []
-    var health = []
-    var generosity = []
-    var family = []
+//     var gdp = []
+//     var happiness = []
+//     var freedom = []
+//     var trust = []
+//     var health = []
+//     var generosity = []
+//     var family = []
     
-   data.forEach(function(country) { 
-        gdp.push(+country["Economy(GDP_per_Capita)"]);
-        happiness.push(+country["Happiness_Score"]);
-        freedom.push(+country["Freedom"]);
-        trust.push(+country["Trust(Government_Corruption)"]);
-        health.push(+country["Health(Life_Expectancy)"]);
-        generosity.push(+country["Generosity"]);
-        family.push(+country["Family"]);
+//    data.forEach(function(country) { 
+//         gdp.push(+country["Economy(GDP_per_Capita)"]);
+//         happiness.push(+country["Happiness_Score"]);
+//         freedom.push(+country["Freedom"]);
+//         trust.push(+country["Trust(Government_Corruption)"]);
+//         health.push(+country["Health(Life_Expectancy)"]);
+//         generosity.push(+country["Generosity"]);
+//         family.push(+country["Family"]);
         
-   })
+   
 
     var year2015 = []
     var year2016 = []
@@ -52,24 +52,21 @@ d3.csv("data/merged_dataset.csv").then(function(data){
     var year2020 = []
                 // Average Happiness over the years Graph
     data.forEach(function(element){
-        console.log(typeof +element['Happiness_Score']);
-        if(element['Year'] === '2015'){
-            year2015.push(+element['Happiness_Score']);
+        console.log(element.Year);
+        if(element.Year === 2015){
+            year2015.push(+element.happiness_score);
         }
-        else if (element['Year'] === '2016'){
-            year2016.push(+element['Happiness_Score']);
+        else if (element.Year === 2016){
+            year2016.push(+element.happiness_score);
     }
-        else if (element['Year'] === '2017'){
-            year2017.push(+element['Happiness_Score']);
-    }
-        else if (element['Year'] === '2018'){
-        year2018.push(+element['Happiness_Score']);
-    }
-        else if (element['Year'] === '2019'){
-            year2019.push(+element['Happiness_Score']);
-        }
-        else if (element['Year'] === '2020'){
-            year2020.push(+element['Happiness_Score']);
+        else if (element.Year === 2017) {
+          year2017.push(+element.happiness_score);
+        } else if (element.Year === 2018) {
+          year2018.push(+element.happiness_score);
+        } else if (element.Year === 2019) {
+          year2019.push(+element.happiness_score);
+        } else if (element.Year === 2020) {
+          year2020.push(+element.happiness_score);
         }
     })
     var arrAvg2015 = year2015.reduce((a,b) => a + b, 0) / year2015.length;
@@ -91,52 +88,52 @@ d3.csv("data/merged_dataset.csv").then(function(data){
 //    console.log(health );
 //    console.log(generosity);
       
-   if (factor ==='gdp'){
-        x_axis = gdp
-        x_tile = "Economy(GDP_per_Capita)"
-   }
-   else if (factor === 'freedom'){
-       x_axis = freedom
-       x_tile = "Freedom"
-   }
-   else if (factor === 'trust'){
-    x_axis = trust
-    x_tile = "Trust(Government_Corruption)"
-   }
-    else if (factor === 'health'){
-    x_axis = health
-    x_tile = "Health(Life_Expectancy)"
-    }
-    else if (factor === 'generosity'){
-    x_axis = generosity
-    x_tile = "Generosity"
-    }
-    else if (factor === 'family'){
-    x_axis = family
-    x_tile = "Family"
-    }
+//    if (factor ==='gdp'){
+//         x_axis = gdp
+//         x_tile = "Economy(GDP_per_Capita)"
+//    }
+//    else if (factor === 'freedom'){
+//        x_axis = freedom
+//        x_tile = "Freedom"
+//    }
+//    else if (factor === 'trust'){
+//     x_axis = trust
+//     x_tile = "Trust(Government_Corruption)"
+//    }
+//     else if (factor === 'health'){
+//     x_axis = health
+//     x_tile = "Health(Life_Expectancy)"
+//     }
+//     else if (factor === 'generosity'){
+//     x_axis = generosity
+//     x_tile = "Generosity"
+//     }
+//     else if (factor === 'family'){
+//     x_axis = family
+//     x_tile = "Family"
+//     }
 
-    var trace1 = {
-        x: x_axis,
-        y: happiness,
-        mode: "markers",
-        marker: {
-            size: happiness,
-            color: gdp
-        },
+    // var trace1 = {
+    //     x: x_axis,
+    //     y: happiness,
+    //     mode: "markers",
+    //     marker: {
+    //         size: happiness,
+    //         color: gdp
+    //     },
         
-        text: gdp
-    };
+    //     text: gdp
+    // };
 
-    var layout1 = {
-        xaxis:{title:x_tile},
-        height: 500,
-        width: 1000
-    };
+    // var layout1 = {
+    //     xaxis:{title:x_tile},
+    //     height: 500,
+    //     width: 1000
+    // };
 
-    var data1 = [trace1];
+    // var data1 = [trace1];
 
-    Plotly.newPlot("bubble", data1,layout1);
+    // Plotly.newPlot("bubble", data1,layout1);
 
     var trace2 = {
         x: [2015,2016,2017,2018,2019,2020],
