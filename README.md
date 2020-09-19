@@ -42,8 +42,9 @@ Comparison: Happiness over years overall trend
 
 ## Available APIs from localhost:5000 Flash app.py
 Available Routes:
-/api/v1.0/All
-/api/v1.0/2015
+
+localhost:5000/api/v1.0/All
+localhost:5000/api/v1.0/2015
 /api/v1.0/2016
 /api/v1.0/2017
 /api/v1.0/2018
