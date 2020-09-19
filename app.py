@@ -71,14 +71,8 @@ def happinessAll():
                 newjson["income level"] = incomelevel
                 newjson["alpha3"] = alpha3
                 results.append(newjson)
-<<<<<<< HEAD
-
+ 
     return jsonify(results)
-
-=======
-        
-    return jsonify(results)
->>>>>>> 39de0a0a7368a6e6056b8c7b9cf81f7978ee52bc
 
 @app.route("/api/v1.0/2015")
 def happiness2015():
