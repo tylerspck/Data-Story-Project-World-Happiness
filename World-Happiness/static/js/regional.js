@@ -92,16 +92,66 @@ var xScale = d3.scaleBand().range([0, chartWidth]).padding(0.4);
 
 var yScale = d3.scaleLinear().range([chartHeight, 0]);
 
-function eastAsia(newyear, variable)  {
+function eastAsia(newyear, factor)  {
     d3.json(url).then( function(data, error){
         if (error) {
             throw error;
         }
+        d3.selectAll("g").html("")
         // chartGroup1.remove()
         var eastAsia = data.filter(x=>x.region == "East Asia & Pacific").filter(x=>x.Year == newyear)
-        console.log(eastAsia)
-        xScale.domain(eastAsia.map(function(d) { return d.country}));
-        yScale.domain([0, d3.max(eastAsia, function(d) {return d.economy + 0.2})]);
+        var gdp = [];
+        var country = [];
+        var happiness = [];
+        var freedom = [];
+        var trust = [];
+        var health = [];
+        var generosity = [];
+        var family = [];
+
+        eastAsia.forEach(function (x) {
+          country.push(x["country"]);
+          gdp.push(+x["economy"]);
+          happiness.push(+x["happiness_score"]);
+          freedom.push(+x["freedom"]);
+          trust.push(+x["trust"]);
+          health.push(+x["health"]);
+          generosity.push(+x["generosity"]);
+          family.push(+x["family"]);
+        });
+
+        var x_axis;
+        var x_tile;
+
+        if (factor === "gdp") {
+          x_axis = gdp;
+          x_tile = "Economy(GDP_per_Capita)";
+        } else if (factor === "freedom") {
+          x_axis = freedom;
+          x_tile = "Freedom";
+        } else if (factor === "happiness") {
+          x_axis = happiness;
+          x_tile = "Happiness Score";
+        } else if (factor === "trust") {
+          x_axis = trust;
+          x_tile = "Trust(Government_Corruption)";
+        } else if (factor === "health") {
+          x_axis = health;
+          x_tile = "Health(Life_Expectancy)";
+        } else if (factor === "generosity") {
+          x_axis = generosity;
+          x_tile = "Generosity";
+        } else if (factor === "family") {
+          x_axis = family;
+          x_tile = "Family";
+        }
+        
+        xScale.domain(
+          eastAsia.map(function (d) {
+            return d.country;
+          })
+        );
+        yScale.domain([0, d3.max(x_axis + .2)]);
 
         chartGroup1.append("g").attr("transform", "translate(0,"+chartHeight+")").call(d3.axisBottom(xScale)).selectAll("text").attr("transform", function(d) {
           return "rotate(-90)"
@@ -109,7 +159,7 @@ function eastAsia(newyear, variable)  {
         
         chartGroup1.append("g").call(d3.axisLeft(yScale))
 
-        chartGroup1.selectAll(".bar").data(eastAsia).enter().append("rect").attr("class", "bar").attr("x", function(d) {return xScale(d.country); }).attr("y", function(d) {return yScale(d.economy); }).attr("width", xScale.bandwidth()).attr("height", function(d) {return chartHeight - yScale(d.economy);});
+        chartGroup1.selectAll(".bar").data(eastAsia).enter().append("rect").attr("class", "bar").attr("x", xScale(country)).attr("y", yScale(x_axis)).attr("width", xScale.bandwidth()).attr("height", chartHeight - yScale(x_axis));
     })
 }
 
@@ -118,6 +168,7 @@ function Euro(newyear)  {
         if (error) {
             throw error;
         }
+        d3.selectAll("g").html("");
         // chartGroup2.remove()
         var Euro = data.filter(x=>x.region == "Europe & Central Asia").filter(x=>x.Year == newyear)
         console.log(Euro)
@@ -136,13 +187,14 @@ function Euro(newyear)  {
 d3.select("#year_slider").on("change", function () {
   var newyear = d3.select("#year_slider").property("value");
   var factor = d3.selectAll(".active").property("value");
+  // d3.selectAll("svg > *").remove();
   eastAsia(newyear);
   Euro(newyear);
 
 });
 
 function init() {
-  eastAsia(2015);
+  eastAsia(2015, "gdp");
   Euro(2015);
 }
 
