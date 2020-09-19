@@ -92,11 +92,7 @@ else if (factor === 'family'){
         size: happiness,
         color: x_axis,
       },
-      hovertemplate:
-        `<b>${text}</b><br><br>` +
-        `%${yaxis.title.text}: ${happiness}<br>` +
-        `${xaxis.title.text}: ${x_axis}<br>`+
-         `<extra></extra>`
+      hovertemplate: country
         // `<br><b>Country</b>: ${country}` +
         // `<br><b>Happiness Score</b>: ${happiness}` +
         // `<br><b>${x_tile}: ${x_axis}</b>`,
