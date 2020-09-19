@@ -30,8 +30,12 @@ The current state of the world.
 
 ## Visuals
 Global Chloropleth Map with Yearly Transitions & Capital Markers
+
 Happiness Trends grouping data by country with sparklines
+
 Comparison: Graph Countries by Year by factors
+
+Comparison: Happiness over years overall trend
 
 ## Database ERD
 ![HAPPINESSDB_ERD.png](HAPPINESSDB_ERD.png)
