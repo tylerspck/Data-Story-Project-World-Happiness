@@ -42,12 +42,12 @@ def homepage():
 def happinessAll():
 
     resultall = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in resultall:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in resultall:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -69,6 +69,7 @@ def happinessAll():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 <<<<<<< HEAD
 
@@ -83,12 +84,12 @@ def happinessAll():
 def happiness2015():
 
     result2015 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2015""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2015:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in result2015:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -110,6 +111,7 @@ def happiness2015():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
         
     return jsonify(results)
@@ -120,12 +122,12 @@ def happiness2015():
 def happiness2016():
 
     result2016 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2016""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2016:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in result2016:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -147,6 +149,7 @@ def happiness2016():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 
     return jsonify(results)
@@ -156,12 +159,12 @@ def happiness2016():
 def happiness2017():
 
     result2017 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2017""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2017:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in result2017:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -183,6 +186,7 @@ def happiness2017():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 
     return jsonify(results)
@@ -192,12 +196,12 @@ def happiness2017():
 def happiness2018():
 
     result2018 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2018""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2018:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel,alpha3 in result2018:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -219,6 +223,7 @@ def happiness2018():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 
     return jsonify(results)
@@ -227,12 +232,12 @@ def happiness2018():
 def happiness2019():
 
     result2019 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2019""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2019:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in result2019:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -254,6 +259,7 @@ def happiness2019():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 
     return jsonify(results)
@@ -263,12 +269,12 @@ def happiness2019():
 def happiness2020():
     
     result2020 = con.execute("""with result as (
-        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
+        select h.country, wb.region, cc.countrycode, wb.capitalcity, wb.capitallat, wb.capitallong, h.happiness_rank, h.year, h.happiness_score, h.economy, h.family, h.health, h.freedom, h.trust, h.generosity, cc.population, cc.area, cc.gdp, wb.incomelevel, cc.alpha3 from countrycodes cc, happiness h, wbcountries wb where cc.country = h.country and cc.country= wb.country )
         select * from result where year=2020""")
 
     results = []
 
-    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel in result2020:
+    for country, region, countrycode, capitalcity, capitallat, capitallong, happiness_rank, year, happiness_score, economy, family, health, freedom, trust, generosity, population, area, gdp, incomelevel, alpha3 in result2020:
                 newjson = {}
                 newjson["country"] = country
                 newjson["region"] = region
@@ -290,6 +296,7 @@ def happiness2020():
                 newjson["area"] = area
                 newjson["gdp"] = gdp
                 newjson["income level"] = incomelevel
+                newjson["alpha3"] = alpha3
                 results.append(newjson)
 
     return jsonify(results)

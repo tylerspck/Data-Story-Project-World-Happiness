@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+  <!-- Add Vue and BootstrapVue scripts just before the closing </body> tag -->
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+  <title>Happiness Color Map</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a target="__blank" href="index.html" class="nav-item nav-link ">Home</a>
+      <button type="button" id="buttonlat">
+        <a target="__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report"
+          class="navbar-brand">Dataset
+          Source</a>
+
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav ml-auto">
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
+            <div class="dropdown-menu">
+              <a target="__blank" href="temperature.html" class="dropdown-item">Factors</a>
+              <a target="__blank" href="humidity.html" class="dropdown-item">Happiest Countries</a>
+              <a target="__blank" href="color_map.html" class="dropdown-item">Global Map</a>
+              <a target="__blank" href="wind_speed.html" class="dropdown-item">Regional Maps</a>
+            </div>
+          </div>
+          <a target="__blank" href="data.html" class="nav-item nav-link ">Data</a>
+          <a target="__blank" href="index1.html" class="nav-item nav-link ">Comparison</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--add slider to the top-->
+  <div id="slider_div">
+    <form>
+      <label for="year" style="font-size: 18px;"><b style="font-family: Avenir;">Year:</b></label>
+      <input type="range" min=2015 max=2020 step=1 id="year_slider" value=2015 oninput="selected_year.value = year_slider.value">
+      <output name="selected_year" id="selected_year" style="font-size: 12px; font-weight: bold;">2015</output>
+    </form>
+  </div>
+  <!-- The div that holds our map -->
+  <div id="map"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  <!-- D3 JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <!-- Choropleth JS -->
+  <script type="text/javascript" src="static/js/choropleth.js"></script>
+  <!-- API Key -->
+  <script type="text/javascript" src="static/js/config.js"></script>
+  <!-- leaflet-heat.js -->
+  <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+  <!-- Color Map JavaScript -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+</body>
+</html>
+
+
+

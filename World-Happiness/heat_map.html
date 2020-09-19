@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">  
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+  <!-- Add Vue and BootstrapVue scripts just before the closing </body> tag -->
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+  <title>Happiness Heat Map</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a target="__blank" href="index.html" class="nav-item nav-link ">Home</a>
+      <button type="button" id="buttonlat">
+        <a target="__blank" href="https://www.kaggle.com/mathurinache/world-happiness-report" class="navbar-brand">Dataset
+          Source</a>
+  
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav ml-auto">
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
+            <div class="dropdown-menu">
+              <a target="__blank" href="temperature.html" class="dropdown-item">Factors</a>
+              <a target="__blank" href="humidity.html" class="dropdown-item">Happiest Countries</a>
+              <a target="__blank" href="cloudiness.html" class="dropdown-item">Global HeatMap</a>
+              <a target="__blank" href="wind_speed.html" class="dropdown-item">Regional Maps</a>
+            </div>
+          </div>
+          <a target="__blank" href="data.html" class="nav-item nav-link ">Data</a>
+          <a target="__blank" href="index1.html" class="nav-item nav-link ">Comparison</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!-- The div that holds our map -->
+  <div id="map"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  <!-- D3 JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <!-- Choropleth JS -->
+  <script type="text/javascript" src="static/js/choropleth.js"></script>
+  <!-- API Key -->
+  <script type="text/javascript" src="static/js/config.js"></script>
+  <!-- leaflet-heat.js -->
+  <script type="text/javascript" src="static/js/leaflet-heat.js"></script>  
+  <!-- Color Map JavaScript -->
+  <script type="text/javascript" src="static/js/heatMap.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+</body>
+
+<style>
+  body,
+  html {
+    margin: 100;
+    padding: 100;
+    font-family: "Avenir", sans-serif;
+    font-size: 11px;
+    text-align: center;
+    color: #414141;
+    background-color: #fefcff;
+  }
+
+  .tooltip {
+    position: absolute;
+    text-align: left;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    font: 18px sans-serif;
+    font-family: "Avenir";
+    font-weight: 500;
+    background: #fff;
+    border: 0px;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .compare_chart_tooltip {
+    position: absolute;
+    text-align: left;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    font: 18px sans-serif;
+    font-family: "Avenir";
+    font-weight: 500;
+    background: #fff;
+    border: 0px;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .small_chart_tooltip {
+    position: absolute;
+    text-align: left;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font: 10px sans-serif;
+    font-family: "Avenir";
+    font-weight: 300;
+    background: #fff;
+    border: 0px;
+    border-radius: 1px;
+    border-color: #414141;
+    pointer-events: none;
+  }
+
+  .line {
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .small_chart_line {
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .small_chart_circle {
+    height: 3px;
+    width: 3px;
+  }
+
+  .compare_chart_circle {
+    height: 3px;
+    width: 3px;
+  }
+
+  .dot {
+    fill: none;
+  }
+
+  .y_label {
+    fill: none;
+  }
+
+  .row_right {
+    width: 25%;
+    height: auto;
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 70px;
+    margin-left: 100px;
+    margin-right: 55px;
+    margin-bottom: 55px;
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+    border-radius: 30px;
+    box-shadow: 0 10px 14px 0 #d8d6d9, 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    float: right;
+    background-color: #fefcff;
+  }
+
+  .row_left {
+    padding: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 500px;
+    width: 70%;
+    margin-right: auto;
+    float: left;
+  }
+
+
+  .legend-labels {
+    margin: 0 !important;
+    font-size: 15px;
+  }
+
+  .key-dot {
+    display: inline-block;
+    height: 10px;
+    margin-right: 0.5em;
+    width: 10px;
+    border-radius: 10px;
+  }
+
+  #legend {
+    overflow: hidden;
+    margin-left: 60px;
+  }
+
+  .legend {
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  .hapscore {
+    background: #1d00ff;
+  }
+
+  .haprank {
+    background: #9103c2;
+  }
+
+  .econ {
+    background: #0072f5;
+  }
+
+  .fam {
+    background: #fc5a03;
+  }
+
+  .health {
+    background: #008f68;
+  }
+
+  .freedom {
+    background: #ffa400;
+  }
+
+  .trust {
+    background: #ed0239;
+  }
+
+  .generosity {
+    background: #fc03ca;
+  }
+
+
+  .button {
+    border: none;
+    border-radius: 7px;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Avenir;
+    background-color: #fefcff;
+    box-shadow: 0 10px 14px 0 #d8d6d9, 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .button_pressed {
+    box-shadow: inset 1.5px 1.5px 3.5px 0 rgba(0, 0, 0, 0.2),
+      inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .axis line {
+    stroke: #414141;
+  }
+
+  .axis path {
+    stroke: #414141;
+  }
+
+  .axis text {
+    fill: #414141;
+    font-family: Avenir;
+  }
+
+  .small_chart_class {
+    pointer-events: all;
+  }
+
+  #compare-area {
+    border-radius: 30px;
+    padding: 10px;
+    padding-left: 120px;
+    padding-right: 250px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 25em;
+    background: transparent;
+    position: relative;
+  }
+
+  input[type="range"]:focus {
+    outline: 0;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.4em;
+    height: 1.4em;
+    margin: .05em 0;
+    background: #aaaa;
+    border-radius: 100%;
+    box-shadow:
+      inset .8em .8em 5px -8px rgba(255, 255, 255, .4),
+      inset -.4em -.4em 10px -3px rgba(0, 0, 0, .2),
+      0.7em 0.5em 7px -0.5em rgba(0, 0, 0, .4);
+    ;
+
+    cursor: pointer;
+  }
+
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    width: 100%;
+    height: 1em;
+    padding: 0 1em;
+    border-radius: 2em;
+    box-shadow:
+      inset .1em 0.3em 4px rgba(0, 0, 0, .15),
+      inset -0.1em -0.4em 7px rgba(255, 255, 255, .415);
+  }
+</style>
+</html>
