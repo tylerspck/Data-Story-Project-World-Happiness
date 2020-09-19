@@ -17,6 +17,7 @@ ETL steps
 4. Import
 
 World ISO Codes for scraping! https://countrycode.org/ 
+
 Scrape table, store country name & ISOs
 
 World Bank API: https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries
