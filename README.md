@@ -1,13 +1,13 @@
 # The Story of World Happiness
 September 7 2020
 
-Group Members
+## Group Members
 Dhara Bhansali, Sarah Grant, Tyler Speck, Matt Debnar
 
-Topic
+## Topic
 The story of world happiness for the past 6 years.
 
-Data Sets
+## Data Sets
 World Happiness Report: https://www.kaggle.com/mathurinache/world-happiness-report
 	ETL steps
 download CSVs
@@ -20,13 +20,13 @@ World Bank API: https://datahelpdesk.worldbank.org/knowledgebase/articles/898590
 Write script to lookup data based on ISO code and store in DB
 Investigate more World Bank datasets
 
-Inspiration
+## Inspiration
 The current state of the world.
 
-Visuals
+## Visuals
 Global Chloropleth Map with Yearly Transitions & Capital Markers
 Happiness Trends grouping data by country with sparklines
 Comparison: Graph Countries by Year by factors
 
-Database ERD
+## Database ERD
 ![HAPPINESSDB_ERD.png](HAPPINESSDB_ERD.png)
