@@ -8,23 +8,21 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <!-- <link rel="manifest" href="/site.webmanifest"> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
   <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
   <!-- Add Vue and BootstrapVue scripts just before the closing </body> tag -->
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
   <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-  <title>Happiness Color Map</title>
+  <title>Happiness Sparkline Map</title>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 
-  <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <!-- Our SparkStyle CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/sparkstyle.css">
 </head>
 
 <body>
@@ -43,7 +41,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
                     <div class="dropdown-menu">
                         <a href="color_map.html" class="dropdown-item">Global Map</a>
-                        <a href="sparkline.html" class="dropdown-item">Happiness Trends</a>
+                        <a href="regional.html" class="dropdown-item">Regional Maps</a>
                     </div>
                 </div>
                 <a href="index1.html" class="nav-item nav-link ">Comparison</a>
@@ -52,29 +50,26 @@
         </div>
     </nav>
 </div>
-  <!--add slider to the top-->
-  <div id="slider_div">
-    <form>
-      <label for="year" style="font-size: 18px;"><b style="font-family: Avenir;">Year:</b></label>
-      <input type="range" min=2015 max=2020 step=1 id="year_slider" value=2015 oninput="selected_year.value = year_slider.value">
-      <output name="selected_year" id="selected_year" style="font-size: 12px; font-weight: bold;">2015</output>
-    </form>
+  <!-- The div that holds our sparklines -->
+  <div id="sparklines">
   </div>
-  <!-- The div that holds our map -->
-  <div id="map"></div>
-
+    <div id="indcontent">
+    </div>
+    <div id="sparks"></div>
   <!-- Leaflet JavaScript -->
   <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
   <!-- D3 JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> -->
   <!-- Choropleth JS -->
   <script type="text/javascript" src="static/js/choropleth.js"></script>
   <!-- API Key -->
   <script type="text/javascript" src="static/js/config.js"></script>
   <!-- leaflet-heat.js -->
   <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
-  <!-- Color Map JavaScript -->
-  <script type="text/javascript" src="static/js/logic.js"></script>
+  <!-- Sparkline JavaScript -->
+  <script type="text/javascript" src="static/js/sparkline.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
