@@ -1,0 +1,43 @@
+body{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+table{
+    border-spacing:0;
+    padding:0;
+}
+th{
+  text-align:left;
+  font-weight:normal !important;
+  border-top:1px solid #ddd;
+  border-left:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+    height:25px;
+    padding-left:5px;
+    width: 50px;
+}
+td{
+  border:1px solid #ddd;
+    width:30px !important;
+    height:25px;
+    padding-left:5px;
+}
+tr.row-odd,
+.row-odd{
+    background: #eee;
+}
+.eightywidth{
+    width:72%;
+    float:left;
+}
+#sparks{
+    float:left;
+    width:20%;
+}
+.sparkline{
+    height:25px;
+    width:200px;
+}
+.Sparkline{
+    width:200px !important;
+}
