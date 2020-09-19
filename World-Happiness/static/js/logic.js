@@ -58,7 +58,7 @@ function createMap(happiness, countries, legend) {
   });
  
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-  L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap)
+  L.control.layers(baseMaps, overlayMaps, { collapsed: true }).addTo(myMap)
   legend.addTo(myMap)
 };
 
