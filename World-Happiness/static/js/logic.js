@@ -52,7 +52,7 @@ function createMap(happiness, countries, legend) {
 //myMap to combine layers
   myMap = L.map("map", {
     center: [30, 0],
-    zoom: 2,
+    zoom: 3,
     //start with satellitemap and both countries and happiness checked on; happiness 2nd so they're on top
     layers: [satellitemap, countries, happiness]
   });
