@@ -41,7 +41,7 @@ Comparison: Happiness over years overall trend
 ![HAPPINESSDB_ERD.png](HAPPINESSDB_ERD.png)
 
 ## Available APIs from localhost:5000 Flash app.py
-Available Routes: 
+Available Routes:
 - /api/v1.0/All 
 - /api/v1.0/2015 
 - /api/v1.0/2016 
