@@ -1,7 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title> World Happiness Data </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/><!-- Add Vue and BootstrapVue scripts just before the closing </body> tag -->
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+</head>
 
-<table border="1" class="dataframe">
-    <thead>
+<body>
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a href="index.html" class="nav-item nav-link ">Home</a>
+            <button type="button" class="btn btn-outline-primary" id="buttonlat">
+                <a target="_blank" href="https://www.kaggle.com/mathurinache/world-happiness-report">Dataset Source</a>
+    
+            </button>
+    
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Graphs</a>
+                        <div class="dropdown-menu">
+                            <a href="color_map.html" class="dropdown-item">Global Map</a>
+                            <a href="regional.html" class="dropdown-item">Regional Maps</a>
+                        </div>
+                    </div>
+                    <a href="index1.html" class="nav-item nav-link ">Comparison</a>
+                    <a href="data.html" class="nav-item nav-link ">Data</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+<table border="1" class="table">
+    <thead class="thead-dark">
       <tr style="text-align: right;">
         <th></th>
         <th>Unnamed: 0</th>
@@ -14046,3 +14085,6 @@
       </tr>
     </tbody>
   </table>
+
+</body>
+</html>
