@@ -19,7 +19,7 @@ var margin = {
   var chartGroup = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`)
 
-function getPlots(factor) {
+function trend(factor) {
     // Get all plots for a particular ID
 console.log('building plot')
 d3.json("http://localhost:5000/api/v1.0/All").then(function(data){
@@ -159,17 +159,17 @@ d3.json("http://localhost:5000/api/v1.0/All").then(function(data){
 function init()
 {
     // console.log('init')
-    getPlots('gdp');
+    trend('gdp');
     
 }
 
 init();
 
-var buttons = d3.selectAll(".button")
-buttons.on('click', function(){
-    // console.log('button clicked')
-    getPlots(this.id)
-})
+// var buttons = d3.selectAll(".button")
+// buttons.on('click', function(){
+//     // console.log('button clicked')
+//     getPlots(this.id)
+// })
 
 
 
