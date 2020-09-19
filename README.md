@@ -9,14 +9,18 @@ The story of world happiness for the past 6 years.
 
 ## Data Sets
 World Happiness Report: https://www.kaggle.com/mathurinache/world-happiness-report
-	ETL steps
-download CSVs
-Standardize columns
-Write Postgres schema.sql
-Import
+
+ETL steps
+1. download CSVs
+2. Standardize columns
+3. Write Postgres schema.sql
+4. Import
+
 World ISO Codes for scraping! https://countrycode.org/ 
 Scrape table, store country name & ISOs
+
 World Bank API: https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries
+
 Write script to lookup data based on ISO code and store in DB
 Investigate more World Bank datasets
 
