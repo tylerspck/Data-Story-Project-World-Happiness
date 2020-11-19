@@ -38,7 +38,7 @@ Comparison: Graph Countries by Year by factors
 Comparison: Happiness over years overall trend
 
 ## Database ERD
-![HAPPINESSDB_ERD.png](HAPPINESSDB_ERD.png)
+![test/HAPPINESSDB_ERD.png](test/HAPPINESSDB_ERD.png)
 
 ## Available APIs from localhost:5000 Flash app.py
 Available Routes:
