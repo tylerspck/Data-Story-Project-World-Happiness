@@ -1,2 +1,1 @@
-pip intstall git+git://github.com/kennethreitz/requests.git
 
