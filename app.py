@@ -14,7 +14,7 @@ import psycopg2
 import json
 from flask_cors import CORS, cross_origin
 
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/happinessDB')
+engine = create_engine('postgresql://postgres:postgres@localhost:5433/HappinessDB')
 con = engine.connect()
 
 
